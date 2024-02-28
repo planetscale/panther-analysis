@@ -5,7 +5,7 @@ Description: Detects privilege escalation attacks designed to gain access to the
   A user with permissions to start a new build with Cloud Build can gain access to the Cloud Build Service Account 
   and abuse it for more access to the environment.
 DisplayName: "GCP CloudBuild Potential Privilege Escalation"
-RuleID: "GCP.CloudBuild.Potential.Privilege.Escalation"
+RuleID: "GCP.CloudBuild.Potential.Privilege.Escalation.Simple"
 Enabled: true
 Reference: https://rhinosecuritylabs.com/gcp/iam-privilege-escalation-gcp-cloudbuild/
 Runbook: Confirm this was authorized and necessary behavior. To defend against this privilege escalation attack, 
@@ -29,8 +29,7 @@ Detection:
       - KeyPath: protoPayload.methodName
         Condition: EndsWith
         Value: CloudBuild.CreateBuild
-AlertTitle: "[GCP]: [{protoPayload.authenticationInfo.principalEmail}] performed [{protoPayload.methodName}] on 
-project [{resource.labels.project_id}]"
+AlertTitle: "[GCP]: [{protoPayload.authenticationInfo.principalEmail}] performed [{protoPayload.methodName}] on project [{resource.labels.project_id}]"
 AlertContext:
   - KeyName: project
     KeyValue:

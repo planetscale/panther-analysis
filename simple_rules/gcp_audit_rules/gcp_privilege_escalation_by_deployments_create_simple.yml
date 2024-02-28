@@ -1,7 +1,7 @@
 AnalysisType: rule
-RuleID: "GCP.Cloudfunctions.Functions.Update"
-DisplayName: "GCP cloudfunctions functions update"
-Description: "The Identity and Access Management (IAM) service manages authorization and authentication for a GCP environment. This means that there are very likely multiple privilege escalation methods that use the IAM service and/or its permissions."
+RuleID: "GCP.Privilege.Escalation.By.Deployments.Create.Simple"
+DisplayName: "GCP.Privilege.Escalation.By.Deployments.Create"
+Description: "Detects privilege escalation in GCP by taking over the deploymentsmanager.deployments.create permission"
 Enabled: true
 LogTypes:
     - GCP.AuditLog
@@ -19,7 +19,7 @@ Detection:
           Value: true
         - KeyPath: protoPayload.authorizationInfo[*].permission
           Condition: Contains
-          Value: cloudfunctions.functions.update
+          Value: deploymentmanager.deployments.create
 Tests:
     - Name: privilege-escalation
       ExpectedResult: true
@@ -27,7 +27,7 @@ Tests:
         protoPayload:
             authorizationInfo:
                 - granted: true
-                  permission: cloudfunctions.functions.update
+                  permission: deploymentmanager.deployments.create
             methodName: v2.deploymentmanager.deployments.insert
             serviceName: deploymentmanager.googleapis.com
         receiveTimestamp: "2024-01-19 13:47:19.465856238"
@@ -43,8 +43,8 @@ Tests:
       Log:
         protoPayload:
             authorizationInfo:
-                - granted: false
-                  permission: cloudfunctions.functions.update
+                - granted: афдиу
+                  permission: deploymentmanager.deployments.create
             methodName: v2.deploymentmanager.deployments.insert
             serviceName: deploymentmanager.googleapis.com
         receiveTimestamp: "2024-01-19 13:47:19.465856238"

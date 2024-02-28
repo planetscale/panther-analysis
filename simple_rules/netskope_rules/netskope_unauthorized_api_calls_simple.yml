@@ -1,5 +1,5 @@
 AnalysisType: rule
-RuleID: "Netskope.UnauthorizedAPICalls"
+RuleID: "Netskope.UnauthorizedAPICalls.Simple"
 DisplayName: "Netskope Many Unauthorized API Calls"
 AlertTitle: "Many unauthorized API calls from user [{user}]"
 Detection:
@@ -12,7 +12,7 @@ LogTypes:
   - Netskope.Audit
 Tags:
   - Netskope
-  - Configuration Required
+  - Configuration Required # configure threshold for your environment
   - Brute Force
 Reports:
   MITRE ATT&CK: 
